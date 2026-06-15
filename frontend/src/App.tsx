@@ -6,7 +6,7 @@ import ChatPage from "./features/chat/pages/ChatPage";
 import DashboardPage from "./features/dashboard/pages/DashboardPage";
 import NoticesPage from "./features/notices/pages/NoticesPage";
 import AcademicsPage from "./features/academics/pages/AcademicsPage";
-
+import MapPage from "./features/map/pages/MapPage";
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +16,7 @@ function App() {
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/notices" element={<NoticesPage />} />
           <Route path="/academics" element={<AcademicsPage />} />
+          <Route path="/map" element={<MapPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

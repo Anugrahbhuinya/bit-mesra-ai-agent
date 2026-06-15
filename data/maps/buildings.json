@@ -8,16 +8,23 @@
 
   "Central Library": {
     "type": "library",
-    "lat": null,
-    "lng": null,
+    "lat": 23.415,
+    "lng": 85.44,
     "description": "Central Library"
   },
 
   "Administrative Building": {
     "type": "administration",
-    "lat": null,
-    "lng": null,
+    "lat": 23.4142,
+    "lng": 85.4388,
     "description": "Institute administration offices"
+  },
+
+  "CAT Hall": {
+    "type": "academic",
+    "lat": 23.416,
+    "lng": 85.439,
+    "description": "Central Lecture Hall"
   },
 
   "Computer Science Department": {

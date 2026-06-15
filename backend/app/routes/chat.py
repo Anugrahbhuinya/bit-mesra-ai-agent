@@ -36,3 +36,5 @@ def chat(request: ChatRequest):
             "type": "error",
             "answer": f"Internal Server Error: {str(e)}"
         }
+
+# Trigger reload for buildings.json update

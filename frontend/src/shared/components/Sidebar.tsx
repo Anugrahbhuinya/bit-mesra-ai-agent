@@ -3,6 +3,7 @@ import {
   MessageSquare,
   Bell,
   GraduationCap,
+  MapPinned,
 } from "lucide-react";
 
 import { NavLink } from "react-router-dom";
@@ -27,6 +28,11 @@ const navItems = [
     label: "Academics",
     icon: GraduationCap,
     path: "/academics",
+  },
+  {
+    label: "Campus Map",
+    icon: MapPinned,
+    path: "/map",
   },
 ];
 
@@ -57,7 +63,6 @@ const Sidebar = () => {
                   }
                 >
                   <Icon size={20} />
-
                   <span>{item.label}</span>
                 </NavLink>
               </li>

@@ -2,18 +2,20 @@ import { useState } from "react";
 
 import { sendMessage } from "../services/chatApi";
 import type { ChatMessage } from "../types";
+import { useTextToSpeech } from "./useTextToSpeech";
 
 export const useChat = () => {
+  const { speak, stopSpeaking, speakingText } = useTextToSpeech();
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       sender: "bot",
-      text: "Hello 👋 I am the BIT Mesra AI Assistant.",
+      text: "Hey I am the BIT Mesra agent",
     },
   ]);
 
   const [loading, setLoading] = useState(false);
 
-  const sendChatMessage = async (text: string) => {
+  const sendChatMessage = async (text: string, isVoice = false) => {
     if (!text.trim()) return;
 
     const userMessage: ChatMessage = {
@@ -34,6 +36,9 @@ export const useChat = () => {
       };
 
       setMessages((prev) => [...prev, botMessage]);
+      if (isVoice) {
+        speak(response.answer);
+      }
     } catch (error) {
       setMessages((prev) => [
         ...prev,
@@ -53,5 +58,8 @@ export const useChat = () => {
     messages,
     loading,
     sendChatMessage,
+    speak,
+    stopSpeaking,
+    speakingText,
   };
 };

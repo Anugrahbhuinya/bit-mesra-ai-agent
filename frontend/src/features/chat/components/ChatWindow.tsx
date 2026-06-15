@@ -6,7 +6,14 @@ import ChatInput from "./ChatInput";
 import { useChat } from "../hooks/useChat";
 
 function ChatWindow() {
-  const { messages, loading, sendChatMessage } = useChat();
+  const {
+    messages,
+    loading,
+    sendChatMessage,
+    speak,
+    stopSpeaking,
+    speakingText,
+  } = useChat();
 
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -38,7 +45,13 @@ function ChatWindow() {
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-5xl mx-auto p-6">
           {messages.map((message, index) => (
-            <MessageBubble key={index} message={message} />
+            <MessageBubble
+              key={index}
+              message={message}
+              onSpeak={speak}
+              onStopSpeaking={stopSpeaking}
+              isSpeaking={speakingText === message.text}
+            />
           ))}
 
           {loading && (
@@ -57,7 +70,7 @@ function ChatWindow() {
 
       <div className="border-t border-slate-700 bg-slate-900 p-4">
         <div className="max-w-5xl mx-auto">
-          <ChatInput onSend={sendChatMessage} />
+          <ChatInput onSend={sendChatMessage} onStopSpeaking={stopSpeaking} />
         </div>
       </div>
     </div>
