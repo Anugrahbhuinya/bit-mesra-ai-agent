@@ -14,9 +14,11 @@ import { AdminLayout } from "./features/admin/components/AdminLayout";
 import { AdminDashboardPage } from "./features/admin/pages/AdminDashboardPage";
 import { AdminAnalyticsPage } from "./features/admin/pages/AdminAnalyticsPage";
 import { AdminDocumentsPage } from "./features/admin/pages/AdminDocumentsPage";
+import { AdminWebsitesPage } from "./features/admin/pages/AdminWebsitesPage";
 import { AdminKnowledgePage } from "./features/admin/pages/AdminKnowledgePage";
 import { AdminActivityPage } from "./features/admin/pages/AdminActivityPage";
 import { AdminSettingsPage } from "./features/admin/pages/AdminSettingsPage";
+import { AdminCrawlHistoryPage } from "./features/admin/pages/AdminCrawlHistoryPage";
 
 function App() {
   return (
@@ -40,6 +42,8 @@ function App() {
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
           <Route path="/admin/analytics" element={<AdminAnalyticsPage />} />
           <Route path="/admin/documents" element={<AdminDocumentsPage />} />
+          <Route path="/admin/websites" element={<AdminWebsitesPage />} />
+          <Route path="/admin/crawl-history" element={<AdminCrawlHistoryPage />} />
           <Route path="/admin/knowledge-base" element={<AdminKnowledgePage />} />
           <Route path="/admin/activity" element={<AdminActivityPage />} />
           <Route path="/admin/settings" element={<AdminSettingsPage />} />

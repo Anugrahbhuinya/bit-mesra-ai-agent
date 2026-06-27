@@ -5,7 +5,7 @@ import { Sidebar } from "./Sidebar";
 import { TopNavbar } from "./TopNavbar";
 import { ToastNotification } from "./ToastNotification";
 import adminApi from "../services/api";
-import { Shield, X, LogOut, LayoutDashboard, Database, FileText, BarChart3, Activity, Settings } from "lucide-react";
+import { Shield, X, LogOut, LayoutDashboard, Database, FileText, Globe, BarChart3, Activity, Settings, History } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export const AdminLayout = () => {
@@ -48,6 +48,8 @@ export const AdminLayout = () => {
     { label: "Dashboard", icon: LayoutDashboard, path: "/admin/dashboard" },
     { label: "Knowledge Base", icon: Database, path: "/admin/knowledge-base" },
     { label: "Documents", icon: FileText, path: "/admin/documents" },
+    { label: "Websites", icon: Globe, path: "/admin/websites" },
+    { label: "Crawl History", icon: History, path: "/admin/crawl-history" },
     { label: "Analytics", icon: BarChart3, path: "/admin/analytics" },
     { label: "Activity Logs", icon: Activity, path: "/admin/activity" },
     { label: "Settings", icon: Settings, path: "/admin/settings" },

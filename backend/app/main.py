@@ -5,10 +5,23 @@ from fastapi.responses import JSONResponse
 from app.routes.chat import router
 from app.routes.history import router as history_router
 from app.routes.admin import router as admin_router
+from app.routes.websites import router as websites_router
 from app.services.admin_service import seed_admin_user
+from contextlib import asynccontextmanager
+from app.services.websites.scheduler import start_scheduler, stop_scheduler
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup activities
+    await seed_admin_user()
+    await start_scheduler()
+    yield
+    # Shutdown activities
+    await stop_scheduler()
 
 app = FastAPI(
-    title="BIT Mesra AI Assistant"
+    title="BIT Mesra AI Assistant",
+    lifespan=lifespan
 )
 
 app.add_middleware(
@@ -18,10 +31,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-@app.on_event("startup")
-async def startup_event():
-    await seed_admin_user()
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
@@ -66,6 +75,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 app.include_router(router)
 app.include_router(history_router)
 app.include_router(admin_router)
+app.include_router(websites_router)
 
 @app.get("/")
 def root():

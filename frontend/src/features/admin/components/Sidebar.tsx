@@ -5,6 +5,7 @@ import {
   LayoutDashboard,
   Database,
   FileText,
+  Globe,
   BarChart3,
   Activity,
   Settings,
@@ -12,6 +13,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Shield,
+  History,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -37,6 +39,16 @@ export const Sidebar = ({ onMobileClose }: SidebarProps) => {
       label: "Documents",
       icon: FileText,
       path: "/admin/documents",
+    },
+    {
+      label: "Websites",
+      icon: Globe,
+      path: "/admin/websites",
+    },
+    {
+      label: "Crawl History",
+      icon: History,
+      path: "/admin/crawl-history",
     },
     {
       label: "Analytics",

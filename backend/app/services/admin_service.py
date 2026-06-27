@@ -118,6 +118,20 @@ async def get_dashboard_stats() -> dict:
     except Exception as e:
         print(f"Error fetching dynamic docs for dashboard stats: {e}")
 
+    # Fetch dynamic websites from MongoDB
+    try:
+        cursor = db.websites.find({})
+        async for doc in cursor:
+            knowledge_sources += 1
+            documents_list.append({
+                "filename": doc["title"],
+                "type": "website",
+                "size": doc.get("word_count", 0) * 5,
+                "created": doc.get("indexed_at") or datetime.now(timezone.utc)
+            })
+    except Exception as e:
+        print(f"Error fetching dynamic websites for dashboard stats: {e}")
+
     # Add virtual documents to mock data if empty
     if len(documents_list) == 0:
         documents_list = [
