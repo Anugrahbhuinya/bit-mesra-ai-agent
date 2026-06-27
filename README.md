@@ -1,168 +1,137 @@
 # 🎓 BIT Mesra AI Assistant
 
-An AI-powered campus assistant for **Birla Institute of Technology, Mesra** that helps students access academic information, campus resources, notices, hostel details, departments, clubs, and locations through a conversational interface.
+> An enterprise-grade AI-powered digital campus assistant for **BIT Mesra**, built using **FastAPI, React, Gemini 2.5 Flash, LangChain, ChromaDB, and MongoDB**.
 
-Built using **FastAPI**, **React**, **MongoDB**, **ChromaDB**, **LangChain**, and **Retrieval-Augmented Generation (RAG)**.
-
----
-
-## 🚀 Features
-
-### 💬 AI Chat Assistant
-
-* Conversational campus assistant
-* Natural language query support
-* Context-aware responses
-* MongoDB chat history storage
-* Session-based conversations
-
-### 📚 Academic Information
-
-* Academic Calendar Search
-* Examination Schedule Lookup
-* Quiz and Registration Dates
-* Academic Notices
-
-### 📢 Notice Management
-
-* Scholarship Notices
-* Placement Notices
-* Academic Announcements
-* Student Activity Notifications
-
-### 🏢 Campus Information
-
-* Buildings Information
-* Facilities Information
-* Hostel Information
-* Department Information
-* Student Clubs Information
-
-### 🗺️ Smart Campus Navigation
-
-* Interactive Campus Map
-* Open Location on Map
-* Auto Fly-To Location
-* Location Search
-
-### 🎙️ Voice Features
-
-* Voice Input
-* Voice Output
-* Speech-to-Text
-* Text-to-Speech
-
-### 🧠 Retrieval-Augmented Generation (RAG)
-
-* ChromaDB Vector Database
-* HuggingFace Embeddings
-* Semantic Search
-* Intent-Aware Retrieval
-* Metadata Filtering
-* Confidence-Based Ranking
+The assistant provides intelligent campus search, hybrid Retrieval-Augmented Generation (RAG), dynamic knowledge management, automatic website synchronization, and an enterprise administration portal.
 
 ---
 
-# 🏗️ System Architecture
+# 🚀 Features
+
+## 🔍 Universal Campus Search
+
+* FAQs
+* Academic Calendar
+* Notices
+* Buildings
+* Departments
+* Hostels
+* Facilities
+* Clubs
+* Intelligent Intent Detection
+
+---
+
+## 💬 AI Chat Assistant
+
+* Gemini 2.5 Flash
+* Hybrid RAG
+* MongoDB Conversation Memory
+* Context-aware Responses
+* Follow-up Question Handling
+* Source Citations
+* Chat History
+* Session Management
+
+---
+
+## 📚 Dynamic Knowledge Base
+
+### PDF Knowledge Base
+
+* Secure PDF Upload
+* Automatic Text Extraction
+* Intelligent Chunking
+* Embedding Generation
+* Dynamic ChromaDB Indexing
+* Duplicate Detection (SHA-256)
+* Delete Documents
+* Re-index Documents
+* Live Knowledge Updates
+* Source Citations
+
+### Website Knowledge Base
+
+* Website URL Validation
+* Intelligent HTML Extraction
+* Metadata Extraction
+* Website-to-Chroma Pipeline
+* Duplicate Detection
+* Dynamic Website Indexing
+* Website Source Citations
+* Manual Re-indexing
+
+---
+
+## 🔄 Automatic Website Synchronization
+
+* Background Scheduler
+* Automatic Website Crawling
+* Intelligent Change Detection
+* Incremental Re-indexing
+* Normalized Content Hashing
+* Crawl History
+* Manual Sync
+* Bulk Sync
+* Production Logging
+* Crawl Monitoring
+
+---
+
+## 🛠 Enterprise Admin Console
+
+* JWT Authentication
+* Analytics Dashboard
+* Knowledge Base Dashboard
+* Document Management
+* Website Management
+* Crawl History
+* Activity Logs
+* Settings
+* Responsive Modern UI
+
+---
+
+# 🏗 Architecture
 
 ```text
-User Query
-     │
-     ▼
-FastAPI Backend
-     │
-     ▼
-Intent Detection
-     │
-     ▼
-RAG Retrieval (ChromaDB)
-     │
-     ├── FAQs
-     ├── Academic Calendar
-     ├── Notices
-     ├── Buildings
-     ├── Facilities
-     ├── Hostels
-     ├── Departments
-     └── Clubs
-     │
-     ▼
-Response Generation
-     │
-     ▼
-React Frontend
+                        User
+                          │
+                          ▼
+                  React + TypeScript
+                          │
+                    FastAPI Backend
+                          │
+        ┌─────────────────┼──────────────────┐
+        │                 │                  │
+        ▼                 ▼                  ▼
+   Universal Search   Hybrid RAG      Admin Console
+        │                 │                  │
+        │                 ▼                  │
+        │         Gemini 2.5 Flash           │
+        │                 │                  │
+        ▼                 ▼                  ▼
+     MongoDB         ChromaDB          Knowledge Manager
+                          ▲
+        ┌─────────────────┴─────────────────┐
+        │                                   │
+        ▼                                   ▼
+ PDF Ingestion                    Website Ingestion
+        │                                   │
+        ▼                                   ▼
+  Chunking + Embeddings      Chunking + Embeddings
+        │                                   │
+        └──────────────► Shared Vector Store ◄──────────────┐
+                                                            │
+                                                Auto Website Sync
+                                                            │
+                                                            ▼
+                                                Incremental Updates
 ```
 
 ---
 
-# 🧠 RAG Pipeline
-
-```text
-JSON Data
-    │
-    ▼
-Chunking
-    │
-    ▼
-HuggingFace Embeddings
-(BAAI/bge-small-en-v1.5)
-    │
-    ▼
-ChromaDB
-    │
-    ▼
-Similarity Search
-    │
-    ▼
-Intent Routing
-    │
-    ▼
-Source-Aware Ranking
-    │
-    ▼
-Answer
-```
-
----
-
-# 📂 Project Structure
-
-```text
-bit-mesra-ai-agent/
-
-├── frontend/
-│   ├── src/
-│   ├── public/
-│   └── package.json
-│
-├── backend/
-│   ├── app/
-│   │   ├── api/
-│   │   ├── models/
-│   │   ├── services/
-│   │   │   ├── rag/
-│   │   │   ├── search/
-│   │   │   ├── history/
-│   │   │   └── map/
-│   │   └── database/
-│   │
-│   ├── chroma_db/
-│   └── scripts/
-│
-├── data/
-│   ├── academics/
-│   ├── notices/
-│   ├── maps/
-│   ├── hostel/
-│   ├── clubs/
-│   └── faqs/
-│
-└── README.md
-```
-
----
-
-# 🛠️ Tech Stack
+# ⚙️ Tech Stack
 
 ## Frontend
 
@@ -170,171 +139,143 @@ bit-mesra-ai-agent/
 * TypeScript
 * Vite
 * Tailwind CSS
-* React Leaflet
-* Web Speech API
+* Axios
+* Framer Motion
+* React Router
+* Lucide Icons
 
 ## Backend
 
 * FastAPI
 * Python
 * MongoDB
-* Pydantic
-
-## AI & RAG
-
-* LangChain
 * ChromaDB
+* LangChain
 * HuggingFace Embeddings
-* BAAI/bge-small-en-v1.5
+* Google Gemini 2.5 Flash
+* JWT Authentication
+* BeautifulSoup
+* Background Scheduler
 
 ---
 
-# 📊 Current Knowledge Base
-
-| Source            | Documents |
-| ----------------- | --------: |
-| FAQs              |       100 |
-| Academic Calendar |         6 |
-| Notices           |        20 |
-| Buildings         |        15 |
-| Facilities        |        10 |
-| Hostels           |         8 |
-| Departments       |        10 |
-| Clubs             |        10 |
-| **Total**         |   **179** |
-
----
-
-# 🔍 Example Queries
-
-### Buildings
+# 🧠 AI Pipeline
 
 ```text
-Where is the Central Library?
-```
-
-### Hostels
-
-```text
-Tell me about Aryabhatta Hostel
-```
-
-### Departments
-
-```text
-Which department offers AIML?
-```
-
-### Facilities
-
-```text
-Medical Center
-```
-
-### Clubs
-
-```text
-What clubs are available?
-```
-
-### Notices
-
-```text
-Scholarship Notice
-```
-
-### Academic Calendar
-
-```text
-When is Quiz1?
+User Query
+      │
+      ▼
+Intent Detection
+      │
+      ▼
+Hybrid Retriever
+      │
+      ▼
+ChromaDB
+      │
+      ▼
+Context Builder
+      │
+      ▼
+Gemini 2.5 Flash
+      │
+      ▼
+Grounded Response
+      │
+      ▼
+Source Citations
 ```
 
 ---
 
-# ⚡ Installation
+# 🌐 Knowledge Synchronization
 
-## Backend
-
-```bash
-cd backend
-
-pip install -r requirements.txt
-
-uvicorn app.main:app --reload
+```text
+Website
+      │
+      ▼
+Scheduler
+      │
+      ▼
+Crawler
+      │
+      ▼
+Content Extraction
+      │
+      ▼
+Normalized Hash
+      │
+      ▼
+Meaningful Change?
+      │
+   ┌──┴──┐
+   │     │
+ No      Yes
+   │     │
+   ▼     ▼
+Update   Re-index
+Metadata Embeddings
 ```
 
 ---
 
-## Frontend
+# ✅ Completed Phases
 
-```bash
-cd frontend
-
-npm install
-
-npm run dev
-```
-
----
-
-# 📈 Current Progress
-
-### Phase 1
-
-* [x] Data Collection
-* [x] FAQ Dataset
-* [x] Academic Calendar Dataset
-* [x] Notices Dataset
-* [x] Buildings Dataset
-* [x] Facilities Dataset
-* [x] Hostels Dataset
-* [x] Departments Dataset
-* [x] Clubs Dataset
-
-### Phase 2
-
-* [x] ChromaDB Integration
-* [x] Embedding Pipeline
-* [x] Chunking Pipeline
-* [x] Semantic Search
-* [x] Metadata Filtering
-* [x] Intent Routing
-
-### Phase 3
-
-* [x] FastAPI Integration
-* [x] MongoDB Chat History
-* [x] RAG Integration
-* [x] Voice Features
-* [x] Campus Map
-
-### Phase 4 (In Progress)
-
-* [ ] Gemini Integration
-* [ ] Conversational RAG
-* [ ] Context-Aware Responses
-* [ ] Personalized Student Assistance
+* Phase 1 – Universal Search
+* Phase 2 – Chat History
+* Phase 3 – Hybrid RAG
+* Phase 4 – Gemini Integration
+* Phase 5A – Enterprise Admin Dashboard
+* Phase 5B – Dynamic PDF Knowledge Base
+* Phase 6A – Website Knowledge Ingestion
+* Phase 6B – Automatic Website Synchronization
 
 ---
 
-# 👨‍💻 Author
+# 🚧 Next Phase
 
-**Anugrah Bhuinya Munda**
+## Phase 7 – Authentication & Personalized Student Platform
 
-B.Tech Artificial Intelligence & Machine Learning
-Birla Institute of Technology, Mesra
+Planned Features
 
-GitHub: https://github.com/Anugrahbhuinya
+* Student Authentication
+* JWT Access Tokens
+* Role-Based Access Control
+* Student Profiles
+* Personalized AI Context
+* Timetable Integration
+* Attendance Management
+* Personalized Notices
+* Future ERP Integration
 
 ---
 
-# ⭐ Future Enhancements
+# 📸 Screenshots
 
-* Gemini-powered Conversational AI
-* Attendance Calculator
-* ERP Integration
-* Personalized Academic Assistant
-* Student Dashboard
-* Event Recommendations
-* Campus Navigation Assistant
-* Multi-language Support
+* AI Chat Assistant
+* Admin Dashboard
+* Knowledge Base
+* Document Management
+* Website Management
+* Crawl History
+* Analytics
+
+---
+
+# ⭐ Highlights
+
+* Hybrid Retrieval-Augmented Generation (RAG)
+* Dynamic PDF & Website Knowledge Base
+* Automatic Website Synchronization
+* Intelligent Change Detection
+* Enterprise Admin Dashboard
+* Production-grade FastAPI Architecture
+* Modern React + TypeScript Frontend
+* Source-aware AI Responses
+* Modular & Scalable Design
+
+---
+
+# 📄 License
+
+This project is developed for educational purposes as part of the **BIT Mesra AI Assistant** initiative.
