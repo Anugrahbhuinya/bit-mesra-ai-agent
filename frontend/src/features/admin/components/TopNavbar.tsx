@@ -71,22 +71,22 @@ export const TopNavbar = ({ statusComponents, onMobileMenuToggle }: TopNavbarPro
   };
 
   return (
-    <header className="sticky top-0 z-30 flex items-center justify-between px-6 py-4 bg-slate-950/80 backdrop-blur-md border-b border-slate-900/60 min-h-[73px]">
+    <header className="sticky top-0 z-30 flex items-center justify-between px-6 py-4 bg-background/80 backdrop-blur-md border-b border-outline-variant/60 min-h-[73px]">
       {/* Search Input Bar & Mobile toggle */}
       <div className="flex items-center gap-4 flex-1">
         <button
           onClick={onMobileMenuToggle}
-          className="md:hidden p-2 hover:bg-slate-900 rounded-lg text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+          className="md:hidden p-2 hover:bg-surface-container/60 rounded-lg text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer"
         >
           <Menu className="w-5 h-5" />
         </button>
 
         <div className="relative max-w-xs w-full hidden sm:block">
-          <Search className="absolute left-3 top-2.5 w-4 h-4 text-slate-500" />
+          <Search className="absolute left-3 top-2.5 w-4 h-4 text-on-surface-variant/40" />
           <input
             type="text"
             placeholder="Search console..."
-            className="w-full pl-9 pr-4 py-2 text-xs bg-slate-900/40 border border-slate-800 rounded-xl text-slate-300 placeholder-slate-500 focus:outline-none focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/20 transition-all"
+            className="w-full pl-9 pr-4 py-2 text-xs bg-surface-container/40 border border-outline-variant rounded-xl text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/20 transition-all"
           />
         </div>
       </div>
@@ -94,19 +94,19 @@ export const TopNavbar = ({ statusComponents, onMobileMenuToggle }: TopNavbarPro
       {/* Right Navbar Controls */}
       <div className="flex items-center gap-5 sm:gap-6 shrink-0">
         {/* System status dots */}
-        <div className="hidden lg:flex items-center gap-4 bg-slate-900/60 border border-slate-900 px-3.5 py-1.5 rounded-xl">
-          <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase pr-1 border-r border-slate-800/80 mr-1">
+        <div className="hidden lg:flex items-center gap-4 bg-surface-container/60 border border-outline-variant px-3.5 py-1.5 rounded-xl">
+          <span className="text-[10px] text-on-surface-variant font-semibold tracking-wider uppercase pr-1 border-r border-outline-variant/80 mr-1">
             Status
           </span>
           {statusComponents.map((comp) => getStatusIcon(comp.name, comp.status))}
         </div>
 
         {/* Live Clock / Calendar */}
-        <div className="hidden sm:flex flex-col items-end border-r border-slate-900 pr-5 select-none font-mono">
-          <span className="text-sm font-semibold text-slate-100 tracking-tight">
+        <div className="hidden sm:flex flex-col items-end border-r border-outline-variant pr-5 select-none font-mono-code">
+          <span className="text-sm font-semibold text-on-surface tracking-tight">
             {formatTime(time)}
           </span>
-          <span className="text-[10px] text-slate-400 uppercase tracking-wider mt-0.5">
+          <span className="text-[10px] text-on-surface-variant uppercase tracking-wider mt-0.5">
             {formatDate(time)}
           </span>
         </div>
@@ -114,28 +114,28 @@ export const TopNavbar = ({ statusComponents, onMobileMenuToggle }: TopNavbarPro
         {/* Action icons */}
         <div className="flex items-center gap-2">
           {/* Notifications toggle */}
-          <button className="p-2.5 hover:bg-slate-900 rounded-xl text-slate-400 hover:text-slate-200 transition-colors relative cursor-pointer group" title="Notifications">
+          <button className="p-2.5 hover:bg-surface-container/60 rounded-xl text-on-surface-variant hover:text-on-surface transition-colors relative cursor-pointer group" title="Notifications">
             <Bell className="w-4 h-4 group-hover:scale-105 transition-transform" />
-            <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-blue-500 rounded-full glow-blue" />
+            <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full" />
           </button>
 
           {/* Theme Toggle (Static design mode placeholder) */}
-          <button className="p-2.5 hover:bg-slate-900 rounded-xl text-slate-400 hover:text-slate-200 transition-colors cursor-pointer group" title="Theme Toggle (Dark Theme Lock)">
-            <Moon className="w-4 h-4 text-blue-400 group-hover:rotate-12 transition-transform" />
+          <button className="p-2.5 hover:bg-surface-container/60 rounded-xl text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer group" title="Theme Toggle (Dark Theme Lock)">
+            <Moon className="w-4 h-4 text-primary group-hover:rotate-12 transition-transform" />
           </button>
         </div>
 
         {/* Current user badge */}
-        <div className="flex items-center gap-3 pl-2 sm:pl-4 border-l border-slate-900 select-none">
+        <div className="flex items-center gap-3 pl-2 sm:pl-4 border-l border-outline-variant select-none">
           <div className="flex flex-col items-end hidden md:flex">
-            <span className="text-xs font-semibold text-slate-200">
+            <span className="text-xs font-semibold text-on-surface">
               {username || "Administrator"}
             </span>
-            <span className="text-[9px] text-slate-400 uppercase tracking-wider font-medium mt-0.5">
+            <span className="text-[9px] text-on-surface-variant uppercase tracking-wider font-medium mt-0.5">
               Super Admin
             </span>
           </div>
-          <div className="p-2 bg-slate-900 border border-slate-800 rounded-xl text-slate-300">
+          <div className="p-2 bg-surface-container border border-outline-variant rounded-xl text-on-surface-variant">
             <User className="w-4 h-4" />
           </div>
         </div>

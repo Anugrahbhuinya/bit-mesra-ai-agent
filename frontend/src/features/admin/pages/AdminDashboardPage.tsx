@@ -56,21 +56,21 @@ export const AdminDashboardPage = () => {
       description: "Upload and split new PDF notice files",
       icon: Upload,
       to: "/admin/documents",
-      colorClass: "bg-blue-500/10 border-blue-500/20 text-blue-400 group-hover:bg-blue-500/20",
+      colorClass: "bg-primary/10 border-primary/20 text-primary group-hover:bg-primary/20",
     },
     {
       title: "View Analytics",
       description: "Analyze response time and API latency",
       icon: BarChart3,
       to: "/admin/analytics",
-      colorClass: "bg-purple-500/10 border-purple-500/20 text-purple-400 group-hover:bg-purple-500/20",
+      colorClass: "bg-primary/10 border-primary/20 text-primary group-hover:bg-primary/20",
     },
     {
       title: "Manage System Settings",
       description: "Configure collection models & chunk bounds",
       icon: Settings,
       to: "/admin/settings",
-      colorClass: "bg-amber-500/10 border-amber-500/20 text-amber-400 group-hover:bg-amber-500/20",
+      colorClass: "bg-primary/10 border-primary/20 text-primary group-hover:bg-primary/20",
     },
   ];
 
@@ -78,8 +78,8 @@ export const AdminDashboardPage = () => {
     return (
       <div className="space-y-6">
         <div>
-          <h2 className="text-xl font-bold text-slate-100">Overview Dashboard</h2>
-          <p className="text-xs text-slate-400 mt-1">Aggregating system status logs...</p>
+          <h2 className="text-xl font-bold text-on-surface">Overview Dashboard</h2>
+          <p className="text-xs text-on-surface-variant mt-1">Aggregating system status logs...</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <CardSkeleton />
@@ -87,10 +87,10 @@ export const AdminDashboardPage = () => {
           <CardSkeleton />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 glass-panel p-6 rounded-2xl border border-slate-800/40">
+          <div className="lg:col-span-2 glass-panel p-6 rounded-2xl border border-outline-variant/40">
             <ListSkeleton items={4} />
           </div>
-          <div className="glass-panel p-6 rounded-2xl border border-slate-800/40">
+          <div className="glass-panel p-6 rounded-2xl border border-outline-variant/40">
             <ListSkeleton items={3} />
           </div>
         </div>
@@ -103,20 +103,20 @@ export const AdminDashboardPage = () => {
       {/* Page Header text */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-slate-100 tracking-tight flex items-center gap-2">
+          <h2 className="text-xl font-bold text-on-surface tracking-tight flex items-center gap-2">
             <span>Operations Dashboard</span>
             <span className="px-2 py-0.5 text-[9px] font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-500/20 rounded-full animate-pulse">
               Live Console
             </span>
           </h2>
-          <p className="text-xs text-slate-400 mt-1">
-            Welcome back, <span className="text-blue-400 font-semibold">@{username}</span>. Monitor RAG pipeline and system status indicators.
+          <p className="text-xs text-on-surface-variant mt-1">
+            Welcome back, <span className="text-primary font-semibold">@{username}</span>. Monitor RAG pipeline and system status indicators.
           </p>
         </div>
 
         <button
           onClick={fetchData}
-          className="px-4 py-2 text-xs font-semibold bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white rounded-xl transition-all cursor-pointer shadow-lg select-none"
+          className="px-4 py-2 text-xs font-semibold bg-surface-container border border-outline-variant hover:border-outline-variant/80 text-on-surface hover:text-primary rounded-xl transition-all cursor-pointer shadow-lg select-none"
         >
           Refresh Console
         </button>
@@ -130,7 +130,7 @@ export const AdminDashboardPage = () => {
           icon={Database}
           description="Total data files scanned"
           trend={{ value: "+1 today", isPositive: true }}
-          colorClass="bg-blue-500/10 border-blue-500/20 text-blue-400 glow-blue"
+          colorClass="bg-primary/10 border-primary/20 text-primary"
           delay={0.05}
         />
         <StatsCard
@@ -138,7 +138,7 @@ export const AdminDashboardPage = () => {
           value={stats?.documents || 0}
           icon={FileText}
           description="Segmented sources index count"
-          colorClass="bg-indigo-500/10 border-indigo-500/20 text-indigo-400 glow-blue"
+          colorClass="bg-primary/10 border-primary/20 text-primary"
           delay={0.1}
         />
         <StatsCard
@@ -147,7 +147,7 @@ export const AdminDashboardPage = () => {
           icon={MessageSquare}
           description="Engaged user chats"
           trend={{ value: "+12h active", isPositive: true }}
-          colorClass="bg-emerald-500/10 border-emerald-500/20 text-emerald-400 glow-emerald"
+          colorClass="bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
           delay={0.15}
         />
         <StatsCard
@@ -155,7 +155,7 @@ export const AdminDashboardPage = () => {
           value={stats?.systemHealth || "Excellent"}
           icon={ShieldCheck}
           description="Integrations connection status"
-          colorClass="bg-violet-500/10 border-violet-500/20 text-violet-400 glow-violet"
+          colorClass="bg-primary/10 border-primary/20 text-primary"
           delay={0.2}
         />
         <StatsCard
@@ -164,7 +164,7 @@ export const AdminDashboardPage = () => {
           icon={Gauge}
           description="Inference roundtrip duration"
           trend={{ value: "Stable", isPositive: true }}
-          colorClass="bg-amber-500/10 border-amber-500/20 text-amber-400 glow-amber"
+          colorClass="bg-primary/10 border-primary/20 text-primary"
           delay={0.25}
         />
         <StatsCard
@@ -172,7 +172,7 @@ export const AdminDashboardPage = () => {
           value={stats?.todayActivity || 0}
           icon={Activity}
           description="Administrative actions recorded"
-          colorClass="bg-rose-500/10 border-rose-500/20 text-rose-400"
+          colorClass="bg-red-500/10 border-red-500/20 text-red-400"
           delay={0.3}
         />
       </div>
@@ -187,7 +187,7 @@ export const AdminDashboardPage = () => {
             actions={
               <Link
                 to="/admin/activity"
-                className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300 font-semibold transition-colors"
+                className="flex items-center gap-1 text-xs text-primary hover:text-primary/95 font-semibold transition-colors"
               >
                 <span>View all logs</span>
                 <ChevronRight className="w-3.5 h-3.5" />
@@ -234,13 +234,13 @@ export const AdminDashboardPage = () => {
           </DashboardCard>
 
           {/* Quick info panel */}
-          <div className="glass-panel p-6 rounded-2xl border border-slate-800/40 relative overflow-hidden flex-1">
+          <div className="glass-panel p-6 rounded-2xl border border-outline-variant/40 relative overflow-hidden flex-1">
             <div className="absolute top-0 right-0 -mr-12 -mt-12 w-28 h-28 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none" />
-            <h4 className="text-sm font-semibold text-slate-200 flex items-center gap-2 mb-2">
+            <h4 className="text-sm font-semibold text-on-surface flex items-center gap-2 mb-2">
               <TrendingUp className="w-4 h-4 text-emerald-400" />
               <span>Operations Summary</span>
             </h4>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-on-surface-variant leading-relaxed">
               All core RAG systems are verified. Gemini models are responding with optimal latency. The document vector database holds semantic indices mapping BIT Mesra campus guidelines, academic curricula, notice lists, and geographical nodes.
             </p>
           </div>

@@ -64,7 +64,7 @@ export const AdminLayout = () => {
   };
 
   return (
-    <div className="flex h-screen w-screen bg-slate-950 text-slate-100 overflow-hidden font-sans">
+    <div className="flex h-screen w-screen bg-background text-on-surface overflow-hidden font-sans">
       {/* 1. Desktop Sidebar */}
       <Sidebar />
 
@@ -78,7 +78,7 @@ export const AdminLayout = () => {
               animate={{ opacity: 0.6 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 z-40 bg-slate-950/80 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm md:hidden"
             />
 
             {/* Sidebar drawer content */}
@@ -87,23 +87,23 @@ export const AdminLayout = () => {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "tween", duration: 0.25 }}
-              className="fixed inset-y-0 left-0 z-50 w-72 bg-slate-950 border-r border-slate-900 flex flex-col p-5 md:hidden shadow-2xl"
+              className="fixed inset-y-0 left-0 z-50 w-72 bg-background border-r border-outline-variant flex flex-col p-5 md:hidden shadow-2xl"
             >
-              <div className="flex items-center justify-between pb-5 border-b border-slate-900/60">
+              <div className="flex items-center justify-between pb-5 border-b border-outline-variant/60">
                 <div className="flex items-center gap-3">
-                  <div className="p-1.5 bg-blue-600 rounded-lg text-white">
+                  <div className="p-1.5 bg-primary rounded-lg text-background">
                     <Shield className="w-5 h-5" />
                   </div>
                   <div className="flex flex-col">
                     <span className="text-sm font-bold">BIT Operations</span>
-                    <span className="text-[10px] text-blue-400 font-semibold uppercase tracking-wider">
+                    <span className="text-[10px] text-primary font-semibold uppercase tracking-wider">
                       Admin Console
                     </span>
                   </div>
                 </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-1.5 hover:bg-slate-900 border border-slate-900 hover:border-slate-800 rounded-lg text-slate-400 cursor-pointer"
+                  className="p-1.5 hover:bg-surface-container border border-outline-variant hover:border-outline-variant/80 rounded-lg text-on-surface-variant cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -118,7 +118,7 @@ export const AdminLayout = () => {
                       key={item.path}
                       to={item.path}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center gap-3.5 px-4 py-3 rounded-xl hover:bg-slate-900 text-slate-400 hover:text-slate-200 transition-all font-medium"
+                      className="flex items-center gap-3.5 px-4 py-3 rounded-xl hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-all font-medium"
                     >
                       <Icon className="w-5 h-5" />
                       <span className="text-sm">{item.label}</span>
@@ -128,10 +128,10 @@ export const AdminLayout = () => {
               </nav>
 
               {/* Logout button in drawer */}
-              <div className="pt-4 border-t border-slate-900/60">
+              <div className="pt-4 border-t border-outline-variant/60">
                 <button
                   onClick={handleMobileLogout}
-                  className="flex items-center gap-3.5 w-full px-4 py-3 rounded-xl text-rose-400 hover:bg-rose-950/20 transition-all font-medium cursor-pointer"
+                  className="flex items-center gap-3.5 w-full px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 transition-all font-medium cursor-pointer"
                 >
                   <LogOut className="w-5 h-5" />
                   <span className="text-sm">Log out</span>
@@ -151,16 +151,16 @@ export const AdminLayout = () => {
         />
 
         {/* Content View Area */}
-        <main className="flex-1 overflow-y-auto custom-scrollbar bg-slate-950/30 p-6 flex flex-col justify-between">
+        <main className="flex-1 overflow-y-auto custom-scrollbar bg-background/50 p-6 flex flex-col justify-between">
           <div className="flex-1">
             <Outlet />
           </div>
 
           {/* Console Footer */}
-          <footer className="mt-8 pt-4 border-t border-slate-900/40 text-center select-none shrink-0">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] text-slate-500 font-medium">
+          <footer className="mt-8 pt-4 border-t border-outline-variant/40 text-center select-none shrink-0">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] text-on-surface-variant/40 font-medium font-mono-code">
               <span>© {new Date().getFullYear()} Birla Institute of Technology, Mesra. AI Operations Center.</span>
-              <span className="font-mono">v1.0.0 (Phase 5A Production)</span>
+              <span>v1.0.0 (Phase 5A Production)</span>
             </div>
           </footer>
         </main>

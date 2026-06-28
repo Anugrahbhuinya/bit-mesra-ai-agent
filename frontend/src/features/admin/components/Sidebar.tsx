@@ -91,12 +91,12 @@ export const Sidebar = ({ onMobileClose }: SidebarProps) => {
       animate={sidebarCollapsed ? "collapsed" : "expanded"}
       variants={containerVariants}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="hidden md:flex flex-col h-screen bg-slate-950 border-r border-slate-900 sticky top-0 overflow-y-auto overflow-x-hidden custom-scrollbar shrink-0"
+      className="hidden md:flex flex-col h-screen bg-background border-r border-outline-variant/60 sticky top-0 overflow-y-auto overflow-x-hidden custom-scrollbar shrink-0"
     >
       {/* Brand logo header */}
-      <div className="flex items-center justify-between p-5 border-b border-slate-900/60 min-h-[73px]">
+      <div className="flex items-center justify-between p-5 border-b border-outline-variant/60 min-h-[73px]">
         <div className="flex items-center gap-3">
-          <div className="p-1.5 bg-blue-600 rounded-lg text-white glow-blue shadow-lg">
+          <div className="p-1.5 bg-primary rounded-lg text-background shadow-lg">
             <Shield className="w-5 h-5" />
           </div>
           {!sidebarCollapsed && (
@@ -106,10 +106,10 @@ export const Sidebar = ({ onMobileClose }: SidebarProps) => {
               exit={{ opacity: 0 }}
               className="flex flex-col"
             >
-              <span className="text-sm font-bold text-slate-100 whitespace-nowrap">
+              <span className="text-sm font-bold text-on-surface whitespace-nowrap">
                 BIT Operations
               </span>
-              <span className="text-[10px] text-blue-400 font-semibold tracking-wider uppercase">
+              <span className="text-[10px] text-primary font-semibold tracking-wider uppercase">
                 Admin Console
               </span>
             </motion.div>
@@ -120,7 +120,7 @@ export const Sidebar = ({ onMobileClose }: SidebarProps) => {
         {!sidebarCollapsed && (
           <button
             onClick={toggleSidebar}
-            className="p-1 hover:bg-slate-900 rounded-lg border border-slate-900 hover:border-slate-800 text-slate-400 hover:text-slate-200 transition-all cursor-pointer"
+            className="p-1 hover:bg-surface-container rounded-lg border border-outline-variant hover:border-outline-variant/85 text-on-surface-variant hover:text-on-surface transition-all cursor-pointer"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -138,8 +138,8 @@ export const Sidebar = ({ onMobileClose }: SidebarProps) => {
               className={({ isActive }) =>
                 `flex items-center gap-3.5 px-3.5 py-3 rounded-xl transition-all duration-200 relative group cursor-pointer ${
                   isActive
-                    ? "bg-blue-600/10 border-l-[3px] border-blue-500 text-blue-400 font-medium"
-                    : "text-slate-400 hover:bg-slate-900/60 hover:text-slate-200 border-l-[3px] border-transparent"
+                    ? "bg-primary/10 border-l-[3px] border-primary text-primary font-medium"
+                    : "text-on-surface-variant hover:bg-surface-container/60 hover:text-on-surface border-l-[3px] border-transparent"
                 }`
               }
             >
@@ -156,7 +156,7 @@ export const Sidebar = ({ onMobileClose }: SidebarProps) => {
 
               {/* Tooltip for collapsed states */}
               {sidebarCollapsed && (
-                <div className="absolute left-16 scale-0 group-hover:scale-100 bg-slate-950 border border-slate-800 text-xs px-2.5 py-1.5 rounded-lg text-slate-200 whitespace-nowrap glow-blue transition-all z-20 pointer-events-none duration-150 origin-left">
+                <div className="absolute left-16 scale-0 group-hover:scale-100 bg-surface-container border border-outline-variant text-xs px-2.5 py-1.5 rounded-lg text-on-surface whitespace-nowrap transition-all z-20 pointer-events-none duration-150 origin-left">
                   {item.label}
                 </div>
               )}
@@ -167,10 +167,10 @@ export const Sidebar = ({ onMobileClose }: SidebarProps) => {
 
       {/* Collapse open button (only shown when collapsed) */}
       {sidebarCollapsed && (
-        <div className="px-4 py-2 flex justify-center border-t border-slate-900/60">
+        <div className="px-4 py-2 flex justify-center border-t border-outline-variant/60">
           <button
             onClick={toggleSidebar}
-            className="p-1.5 bg-slate-900 hover:bg-slate-800 rounded-lg border border-slate-800 text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+            className="p-1.5 bg-surface-container hover:bg-surface-container-high rounded-lg border border-outline-variant text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
@@ -178,15 +178,15 @@ export const Sidebar = ({ onMobileClose }: SidebarProps) => {
       )}
 
       {/* Footer logout area */}
-      <div className="p-4 border-t border-slate-900/60">
+      <div className="p-4 border-t border-outline-variant/60">
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3.5 w-full px-3.5 py-3 rounded-xl text-rose-400 hover:bg-rose-950/20 hover:text-rose-300 border-l-[3px] border-transparent transition-all duration-200 cursor-pointer group relative"
+          className="flex items-center gap-3.5 w-full px-3.5 py-3 rounded-xl text-red-400 hover:bg-red-500/10 hover:text-red-300 border-l-[3px] border-transparent transition-all duration-200 cursor-pointer group relative"
         >
           <LogOut className="w-5 h-5 shrink-0" />
           {!sidebarCollapsed && <span className="text-sm font-medium">Log out</span>}
           {sidebarCollapsed && (
-            <div className="absolute left-16 scale-0 group-hover:scale-100 bg-slate-950 border border-rose-950/80 text-xs px-2.5 py-1.5 rounded-lg text-rose-300 whitespace-nowrap transition-all z-20 pointer-events-none duration-150 origin-left">
+            <div className="absolute left-16 scale-0 group-hover:scale-100 bg-surface-container border border-red-500/20 text-xs px-2.5 py-1.5 rounded-lg text-red-300 whitespace-nowrap transition-all z-20 pointer-events-none duration-150 origin-left">
               Log out
             </div>
           )}
