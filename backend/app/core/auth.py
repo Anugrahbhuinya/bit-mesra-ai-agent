@@ -1,36 +1,28 @@
 import os
 from datetime import datetime, timedelta, timezone
 from typing import Optional
-import bcrypt
 import jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
-SECRET_KEY = os.getenv("JWT_SECRET", "bit_mesra_admin_secret_key_2026")
-ALGORITHM = "HS256"
+from app.auth.password_service import PasswordService
+from app.auth.jwt_service import JWTService, SECRET_KEY, ALGORITHM
+
 ACCESS_TOKEN_EXPIRE_MINUTES = 1440  # 24 hours
 
 security = HTTPBearer()
 
 def hash_password(password: str) -> str:
     """
-    Hashes a plain text password using bcrypt.
+    Hashes a plain text password using bcrypt. Delegated to PasswordService.
     """
-    salt = bcrypt.gensalt()
-    hashed = bcrypt.hashpw(password.encode("utf-8"), salt)
-    return hashed.decode("utf-8")
+    return PasswordService.hash_password(password)
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """
-    Verifies a plain text password against a hashed password.
+    Verifies a plain text password against a hashed password. Delegated to PasswordService.
     """
-    try:
-        return bcrypt.checkpw(
-            plain_password.encode("utf-8"),
-            hashed_password.encode("utf-8")
-        )
-    except Exception:
-        return False
+    return PasswordService.verify_password(plain_password, hashed_password)
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
     """
@@ -67,3 +59,4 @@ async def get_current_admin(credentials: HTTPAuthorizationCredentials = Depends(
             detail="Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
+

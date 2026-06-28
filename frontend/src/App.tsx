@@ -8,6 +8,21 @@ import NoticesPage from "./features/notices/pages/NoticesPage";
 import AcademicsPage from "./features/academics/pages/AcademicsPage";
 import MapPage from "./features/map/pages/MapPage";
 
+// Student Auth Imports
+import { AuthProvider } from "./features/auth/context/AuthContext";
+import { ProtectedRoute } from "./features/auth/guards/ProtectedRoute";
+import { LoginPage } from "./features/auth/pages/LoginPage";
+import { RegisterPage } from "./features/auth/pages/RegisterPage";
+
+// Student Profile Imports
+import { ProfilePage } from "./features/student/pages/ProfilePage";
+import { ChangePasswordPage } from "./features/student/pages/ChangePasswordPage";
+
+// Student Preferences Imports
+import { PreferencesProvider } from "./features/preferences/context/PreferencesContext";
+import { SettingsPage } from "./features/preferences/pages/SettingsPage";
+import { StudentHomeRedirect } from "./features/preferences/components/StudentHomeRedirect";
+
 // Admin Portal Imports
 import { AdminLoginPage } from "./features/admin/pages/AdminLoginPage";
 import { AdminLayout } from "./features/admin/components/AdminLayout";
@@ -19,38 +34,54 @@ import { AdminKnowledgePage } from "./features/admin/pages/AdminKnowledgePage";
 import { AdminActivityPage } from "./features/admin/pages/AdminActivityPage";
 import { AdminSettingsPage } from "./features/admin/pages/AdminSettingsPage";
 import { AdminCrawlHistoryPage } from "./features/admin/pages/AdminCrawlHistoryPage";
+import { AdminStudentsPage } from "./features/admin/pages/AdminStudentsPage";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* User Portal Protected under MainLayout */}
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<DashboardPage />} />
-          <Route path="/chat" element={<ChatPage />} />
-          <Route path="/notices" element={<NoticesPage />} />
-          <Route path="/academics" element={<AcademicsPage />} />
-          <Route path="/map" element={<MapPage />} />
-        </Route>
+    <AuthProvider>
+      <PreferencesProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* Public Student Auth Routes */}
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
 
-        {/* Admin Portal Login */}
-        <Route path="/admin/login" element={<AdminLoginPage />} />
+            {/* User Portal Protected under MainLayout and ProtectedRoute */}
+            <Route element={<ProtectedRoute />}>
+              <Route element={<MainLayout />}>
+                <Route path="/" element={<StudentHomeRedirect />} />
+                <Route path="/chat" element={<ChatPage />} />
+                <Route path="/notices" element={<NoticesPage />} />
+                <Route path="/academics" element={<AcademicsPage />} />
+                <Route path="/map" element={<MapPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/profile/change-password" element={<ChangePasswordPage />} />
+                <Route path="/settings" element={<SettingsPage />} />
+              </Route>
+            </Route>
 
-        {/* Admin Portal Protected under AdminLayout */}
-        <Route element={<AdminLayout />}>
-          <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
-          <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
-          <Route path="/admin/analytics" element={<AdminAnalyticsPage />} />
-          <Route path="/admin/documents" element={<AdminDocumentsPage />} />
-          <Route path="/admin/websites" element={<AdminWebsitesPage />} />
-          <Route path="/admin/crawl-history" element={<AdminCrawlHistoryPage />} />
-          <Route path="/admin/knowledge-base" element={<AdminKnowledgePage />} />
-          <Route path="/admin/activity" element={<AdminActivityPage />} />
-          <Route path="/admin/settings" element={<AdminSettingsPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          {/* Admin Portal Login */}
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+
+          {/* Admin Portal Protected under AdminLayout */}
+          <Route element={<AdminLayout />}>
+            <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+            <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+            <Route path="/admin/students" element={<AdminStudentsPage />} />
+            <Route path="/admin/analytics" element={<AdminAnalyticsPage />} />
+            <Route path="/admin/documents" element={<AdminDocumentsPage />} />
+            <Route path="/admin/websites" element={<AdminWebsitesPage />} />
+            <Route path="/admin/crawl-history" element={<AdminCrawlHistoryPage />} />
+            <Route path="/admin/knowledge-base" element={<AdminKnowledgePage />} />
+            <Route path="/admin/activity" element={<AdminActivityPage />} />
+            <Route path="/admin/settings" element={<AdminSettingsPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+      </PreferencesProvider>
+    </AuthProvider>
   );
 }
 
 export default App;
+

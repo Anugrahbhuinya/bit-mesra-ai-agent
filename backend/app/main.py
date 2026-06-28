@@ -1,11 +1,16 @@
+import os
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from app.routes.chat import router
 from app.routes.history import router as history_router
 from app.routes.admin import router as admin_router
 from app.routes.websites import router as websites_router
+from app.auth.routes import router as auth_router
+from app.student.routes import router as student_router
+from app.student_preferences.routes import router as preferences_router
 from app.services.admin_service import seed_admin_user
 from contextlib import asynccontextmanager
 from app.services.websites.scheduler import start_scheduler, stop_scheduler
@@ -13,6 +18,7 @@ from app.services.websites.scheduler import start_scheduler, stop_scheduler
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup activities
+    os.makedirs("uploads/profile_pictures", exist_ok=True)
     await seed_admin_user()
     await start_scheduler()
     yield
@@ -23,6 +29,9 @@ app = FastAPI(
     title="BIT Mesra AI Assistant",
     lifespan=lifespan
 )
+
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -76,6 +85,10 @@ app.include_router(router)
 app.include_router(history_router)
 app.include_router(admin_router)
 app.include_router(websites_router)
+app.include_router(auth_router)
+app.include_router(student_router)
+app.include_router(preferences_router)
+
 
 @app.get("/")
 def root():

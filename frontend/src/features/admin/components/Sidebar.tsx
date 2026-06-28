@@ -14,6 +14,7 @@ import {
   ChevronRight,
   Shield,
   History,
+  Users,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -29,6 +30,11 @@ export const Sidebar = ({ onMobileClose }: SidebarProps) => {
       label: "Dashboard",
       icon: LayoutDashboard,
       path: "/admin/dashboard",
+    },
+    {
+      label: "Students",
+      icon: Users,
+      path: "/admin/students",
     },
     {
       label: "Knowledge Base",
