@@ -5,7 +5,19 @@ import MainLayout from "./app/layouts/MainLayout";
 import ChatPage from "./features/chat/pages/ChatPage";
 import DashboardPage from "./features/dashboard/pages/DashboardPage";
 import NoticesPage from "./features/notices/pages/NoticesPage";
-import AcademicsPage from "./features/academics/pages/AcademicsPage";
+import { 
+  AcademicWorkspace, 
+  AcademicDashboardPage, 
+  TimetablePage, 
+  ImportTimetablePage,
+  PreviewTimetablePage,
+  AttendancePage,
+  AttendanceHistoryPage,
+  SubjectAttendancePage,
+  PlannerPage,
+  TimelinePage,
+  TaskDetailsPage
+} from "./features/academics";
 import MapPage from "./features/map/pages/MapPage";
 
 // Student Auth Imports
@@ -50,7 +62,18 @@ function App() {
                 <Route path="/" element={<DashboardPage />} />
                 <Route path="/chat" element={<ChatPage />} />
                 <Route path="/notices" element={<NoticesPage />} />
-                <Route path="/academics" element={<AcademicsPage />} />
+                <Route path="/academics" element={<AcademicWorkspace />}>
+                  <Route index element={<AcademicDashboardPage />} />
+                  <Route path="timetable" element={<TimetablePage />} />
+                  <Route path="timetable/import" element={<ImportTimetablePage />} />
+                  <Route path="timetable/preview" element={<PreviewTimetablePage />} />
+                  <Route path="attendance" element={<AttendancePage />} />
+                  <Route path="attendance/history" element={<AttendanceHistoryPage />} />
+                  <Route path="attendance/subject/:subjectId" element={<SubjectAttendancePage />} />
+                  <Route path="planner" element={<PlannerPage />} />
+                  <Route path="timeline" element={<TimelinePage />} />
+                  <Route path="planner/task/:taskId" element={<TaskDetailsPage />} />
+                </Route>
                 <Route path="/map" element={<MapPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/profile/change-password" element={<ChangePasswordPage />} />

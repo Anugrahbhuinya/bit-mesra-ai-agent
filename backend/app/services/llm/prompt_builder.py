@@ -1,8 +1,11 @@
 def build_prompt(
     question: str,
     context: str,
-    history: str
+    history: str,
+    academic_context: str = ""
 ) -> str:
+
+    academic_block = f"Student Academic Context:\n{academic_context}\n\n" if academic_context else ""
 
     return f"""You are BIT Mesra AI Assistant.
 
@@ -26,7 +29,7 @@ Rules:
 7. Format cleanly for chat UI.
 8. CRITICAL: For any facts retrieved from the context, you MUST preserve and cite the source name and page number (if available) inside your response (e.g. "[Source: Student Handbook.pdf, Page: 14]" or "(Source: Department Information)"). ALWAYS output the source name exactly.
 
-Conversation History:
+{academic_block}Conversation History:
 {history}
 
 Knowledge Base Context:

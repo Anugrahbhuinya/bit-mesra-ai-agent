@@ -1,4 +1,5 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, Request
+from typing import Optional
 import logging
 
 from app.models.schemas import ChatRequest
@@ -13,9 +14,35 @@ from app.services.llm.response_formatter import clean_gemini_response
 router = APIRouter()
 logger = logging.getLogger("chat_route")
 
+async def get_optional_current_student(request: Request) -> Optional[dict]:
+    """Helper to decode student payload optionally if Bearer token is provided."""
+    auth_header = request.headers.get("Authorization")
+    if not auth_header or not auth_header.startswith("Bearer "):
+        return None
+    token = auth_header.split(" ")[1]
+    try:
+        from app.auth.jwt_service import JWTService
+        from app.core.database import get_database
+        from app.student.repository import StudentRepository
+        db = get_database()
+        payload = JWTService.decode_token(token)
+        sub = payload.get("sub")
+        role = payload.get("role")
+        if role == "student" and sub:
+            student_repo = StudentRepository(db)
+            student = await student_repo.get_by_id(sub)
+            if student and student.get("status") == "active":
+                student["_id"] = str(student["_id"])
+                return student
+    except Exception:
+        pass
+    return None
 
 @router.post("/chat")
-async def chat(request: ChatRequest):
+async def chat(
+    request: ChatRequest,
+    current_student: Optional[dict] = Depends(get_optional_current_student)
+):
 
     try:
         import time
@@ -90,8 +117,19 @@ async def chat(request: ChatRequest):
                 if len(history) > 1:
                     history_text = format_chat_history(history[:-1])
 
+            # Retrieve Academic Context for the student if logged in
+            academic_context = ""
+            if current_student:
+                from app.services.llm.academic_context import get_academic_prompt_context
+                academic_context = await get_academic_prompt_context(current_student["_id"], current_student)
+
             # Build prompt
-            prompt = build_prompt(question=query, context=context, history=history_text)
+            prompt = build_prompt(
+                question=query,
+                context=context,
+                history=history_text,
+                academic_context=academic_context
+            )
 
             # Generate response with Direct RAG fallback on API failure
             try:

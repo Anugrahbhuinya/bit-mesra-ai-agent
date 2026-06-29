@@ -58,12 +58,20 @@ export const ChatWindow = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left max-w-2xl mx-auto">
                 {[
                   {
+                    title: "Show my timetable",
+                    desc: "View daily class routine",
+                  },
+                  {
+                    title: "How many safe leaves do I have?",
+                    desc: "Check attendance bunk safety",
+                  },
+                  {
                     title: "When are my exams?",
                     desc: "Check semester calendar & schedules",
                   },
                   {
-                    title: "Show my timetable",
-                    desc: "View daily class routine",
+                    title: "What planner tasks are pending?",
+                    desc: "Inspect study & assignment list",
                   },
                   {
                     title: "What notices are relevant to me?",

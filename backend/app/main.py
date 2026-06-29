@@ -11,6 +11,11 @@ from app.routes.websites import router as websites_router
 from app.auth.routes import router as auth_router
 from app.student.routes import router as student_router
 from app.student_preferences.routes import router as preferences_router
+from app.routes.academics import router as academics_router
+from app.routes.timetable import router as timetable_router
+from app.routes.attendance import router as attendance_router
+from app.routes.planner import router as planner_router
+from app.routes.academic_dashboard import router as academic_dashboard_router
 from app.services.admin_service import seed_admin_user
 from contextlib import asynccontextmanager
 from app.services.websites.scheduler import start_scheduler, stop_scheduler
@@ -88,6 +93,12 @@ app.include_router(websites_router)
 app.include_router(auth_router)
 app.include_router(student_router)
 app.include_router(preferences_router)
+app.include_router(academics_router)
+app.include_router(timetable_router)
+app.include_router(attendance_router)
+app.include_router(planner_router)
+app.include_router(academic_dashboard_router)
+
 
 
 @app.get("/")

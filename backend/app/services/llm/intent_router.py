@@ -28,7 +28,35 @@ GEMINI_KEYWORDS = [
     "help me choose",
     "first-year",
     "joining",
-    "know before"
+    "know before",
+    
+    # Academic Intents (Timetable, Attendance, Planner, Map)
+    "timetable",
+    "class",
+    "lecture",
+    "schedule",
+    "classroom",
+    "room",
+    "teach",
+    "professor",
+    "faculty",
+    "skip",
+    "bunk",
+    "attendance",
+    "leave",
+    "percentage",
+    "exam",
+    "quiz",
+    "test",
+    "task",
+    "todo",
+    "study plan",
+    "revision",
+    "planner",
+    "dashboard",
+    "study today",
+    "busiest day",
+    "lightest day"
 ]
 
 GEMINI_THRESHOLD = 0.45
